@@ -1,14 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import unittest
 
 CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
 
-chrome_options = Options()
-#options.add_argument('--headless')
-#options.add_argument('--disable-gpu')
-chrome_options.headless = True
-browser = webdriver.Chrome(CHROMEDRIVER_PATH, options=chrome_options)
+class NewVisitorTest(unittest.TestCase):
 
-browser.get('http://localhost:8000')
+    def setUp(self):
+        chrome_options = Options()
+        chrome_options.headless = True
+        self.browser = webdriver.Chrome(CHROMEDRIVER_PATH, options=chrome_options)
 
-assert 'Django' in browser.title
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_can_start_a_list_and_retrieve_it_later(self):
+        self.browser.get('http://localhost:8000')
+
+        self.assertIn('To-Do', self.browser.title)
+    #    self.fail('Finish the test')
+
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
