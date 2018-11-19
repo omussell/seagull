@@ -1,6 +1,6 @@
 atomicwrites==1.2.1
 attrs==18.2.0
-Django==1.11
+Django==1.11.15
 more-itertools==4.3.0
 pluggy==0.8.0
 py==1.7.0
