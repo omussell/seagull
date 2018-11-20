@@ -73,6 +73,8 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertRegex(edith_list_url, '/lists/.+')
 
         self.browser.quit()
+        chrome_options = Options()
+        chrome_options.headless = True
         self.browser = webdriver.Chrome(CHROMEDRIVER_PATH, options=chrome_options)
 
         self.browser.get(self.live_server_url)
