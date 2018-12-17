@@ -12,10 +12,10 @@ load("@io_bazel_rules_python//python:pip.bzl", "pip_import")
 
 pip_import(
 		name = "my_deps",
-		requirements = "//path/to:requirements.txt",
+		requirements = "//root/seagull/:requirements.txt",
 )
 
-load("@io_bazel_rules_python//python:pip.bzl", "pip_install")
+load("@my_deps//:requirements.bzl", "pip_install")
 
 pip_install()
 
