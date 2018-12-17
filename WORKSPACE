@@ -1,7 +1,7 @@
 git_repository(
 		name = "io_bazel_rules_python",
 		remote = "https://github.com/bazelbuild/rules_python.git",
-		commit = "",
+		commit = "f3a6a8d",
 )
 
 load("@io_bazel_rules_python//python:pip.bzl", "pip_repositories")
