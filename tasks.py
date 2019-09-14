@@ -3,6 +3,10 @@ from pathlib import Path
 
 py_ver = '3.6'
 venv_path = Path.home().joinpath('venv')
+env_vars = { 
+        'PATH': f"{venv_path}",
+        'PIPENV_VENV_IN_PROJECT': 'YES'
+        }
 
 @task
 def venv_create(c):
@@ -11,11 +15,11 @@ def venv_create(c):
 
 @task
 def pip_clean(c):
-    c.run(f"pipenv clean")
+    c.run(f"pipenv clean", env=env_vars)
 
 @task:
 def pip_install(c):
-    c.run(f"pipenv install --deploy --sequential")
+    c.run(f"pipenv install --deploy --sequential", env=env_vars)
 
 @task(venv_create,pip_install)
 def build(c):
